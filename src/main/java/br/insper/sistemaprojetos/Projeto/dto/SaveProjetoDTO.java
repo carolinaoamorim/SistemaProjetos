@@ -1,5 +1,6 @@
 package br.insper.sistemaprojetos.Projeto.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
