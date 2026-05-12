@@ -2,10 +2,16 @@ package br.insper.sistemaprojetos.User;
 
 import br.insper.sistemaprojetos.Papel;
 
-import java.awt.print.Pageable;
 import java.util.UUID;
 
-import static java.lang.reflect.Array.get;
+import br.insper.sistemaprojetos.User.dto.EditUserDTO;
+import br.insper.sistemaprojetos.User.dto.ResponseUserDTO;
+import br.insper.sistemaprojetos.User.dto.SaveUserDTO;
+import br.insper.sistemaprojetos.User.exception.UserAlreadyExistsException;
+import br.insper.sistemaprojetos.User.exception.UserNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -25,16 +31,22 @@ public class UserService {
 
     }
 
-    public Page<ResponseUserDTO> list(String nome, Papel papel, Pageable pageable) {
-
+    public List<ResponseUserDTO> list(String nome, Papel papel) {
+        List<User> users;
         if (nome != null) {
-            return userRepository.findByNomeContaining(nome, pageable).map(user -> ResponseUserDTO.toDTO(user));
+            users = userRepository.findByNomeContaining(nome);
         } else if (papel != null) {
-            return userRepository.findByPapel(papel, pageable).map(user -> ResponseUserDTO.toDTO(user));
+            users = userRepository.findByPapel(papel);
+        } else {
+            users = userRepository.findAll();
         }
 
-        return userRepository.findAll(pageable).map(user -> ResponseUserDTO.toDTO(user));
+        return users.stream().map(ResponseUserDTO::toDTO).toList();
+    }
 
+    public User get(UUID id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException());
     }
 
     public ResponseUserDTO getDTO(UUID id) {

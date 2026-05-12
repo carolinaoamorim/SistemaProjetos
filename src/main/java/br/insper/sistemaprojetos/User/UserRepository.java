@@ -4,13 +4,14 @@ import br.insper.sistemaprojetos.Papel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.awt.print.Pageable;
+import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, UIUD> {
+public interface UserRepository extends JpaRepository<User, UUID> {
 
     boolean existsByCpf(String cpf);
-    Page<User> findByNomeContaining(String nome, Pageable pageable);
-    Page<User> findByPapel(Papel papel, Pageable pageable);
+    List<User> findByNomeContaining(String nome);
+    List<User> findByPapel(Papel papel);
 
 }

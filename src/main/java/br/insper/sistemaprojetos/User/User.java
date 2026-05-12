@@ -2,6 +2,7 @@ package br.insper.sistemaprojetos.User;
 
 import br.insper.sistemaprojetos.Papel;
 import br.insper.sistemaprojetos.Projeto.Projeto;
+import br.insper.sistemaprojetos.User.dto.SaveUserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.ManyToMany;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -31,7 +36,7 @@ public class User {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     @Enumerated(EnumType.STRING)
@@ -40,5 +45,13 @@ public class User {
 
     @ManyToMany(mappedBy="usuarios")
     private List<Projeto> projetos = new ArrayList<>();
+
+    public static User toModel(SaveUserDTO dto) {
+        User user = new User();
+        user.setNome(dto.getNome());
+        user.setCpf(dto.getCpf());
+        user.setPapel(dto.getPapel());
+        return user;
+    }
 
 }

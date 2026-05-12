@@ -1,5 +1,8 @@
 package br.insper.sistemaprojetos.Projeto;
 
+import br.insper.sistemaprojetos.User.User;
+import br.insper.sistemaprojetos.User.UserService;
+
 import br.insper.sistemaprojetos.Projeto.dto.EditProjetoDTO;
 import br.insper.sistemaprojetos.Projeto.dto.ResponseProjetoDTO;
 import br.insper.sistemaprojetos.Projeto.dto.SaveProjetoDTO;
@@ -11,10 +14,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class ProjetoService {
 
     @Autowired
     private ProjetoRepository projetoRepository;
+
+    @Autowired
+    private UserService userService;
 
     public ResponseProjetoDTO save(SaveProjetoDTO dto) {
 
@@ -61,6 +68,24 @@ public class ProjetoService {
         projetoRepository.delete(projetoDB);
     }
 
+    public ResponseProjetoDTO adicionarUsuario(UUID projetoId, UUID userId) {
+        Projeto projeto = get(projetoId);
+        User user = userService.get(userId);
 
+        if (!projeto.getUsuarios().contains(user)) {
+            projeto.getUsuarios().add(user);
+        }
+        projeto = projetoRepository.save(projeto);
+        return ResponseProjetoDTO.toDTO(projeto);
+    }
+
+    public ResponseProjetoDTO removerUsuario(UUID projetoId, UUID userId) {
+        Projeto projeto = get(projetoId);
+        User user = userService.get(userId);
+        projeto.getUsuarios().remove(user);
+        projeto = projetoRepository.save(projeto);
+
+        return ResponseProjetoDTO.toDTO(projeto);
+    }
 
 }

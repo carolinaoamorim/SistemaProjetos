@@ -2,6 +2,14 @@ package br.insper.sistemaprojetos.Projeto;
 
 import br.insper.sistemaprojetos.Projeto.dto.SaveProjetoDTO;
 import br.insper.sistemaprojetos.User.User;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +41,7 @@ public class Projeto {
             joinColumns = @JoinColumn(name = "projeto_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
-    private List<User> usuarios = new ArrayList<>();
+    private List<User> usuarios = new ArrayList();
 
     public static Projeto toModel(SaveProjetoDTO dto) {
         Projeto projeto = new Projeto();

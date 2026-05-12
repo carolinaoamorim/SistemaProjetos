@@ -1,14 +1,13 @@
-package br.insper.sistemaprojetos.User;
+package br.insper.sistemaprojetos.User.dto;
 
 import br.insper.sistemaprojetos.Papel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
-@AllArgsConstructor
-public class UserResponseDTO {
+@Setter
+public class EditUserDTO {
 
-    private UIUD id;
     private String nome;
     private String cpf;
     private Papel papel;
