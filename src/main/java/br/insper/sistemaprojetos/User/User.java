@@ -3,30 +3,22 @@ package br.insper.sistemaprojetos.User;
 import br.insper.sistemaprojetos.Papel;
 import br.insper.sistemaprojetos.Projeto.Projeto;
 import br.insper.sistemaprojetos.User.dto.SaveUserDTO;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.ManyToMany;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "usuarios")
 public class User {
 
     @Id

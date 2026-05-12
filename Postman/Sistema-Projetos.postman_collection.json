@@ -1,0 +1,161 @@
+{
+  "info": {
+    "_postman_id": "89b85d96-9d29-486d-9323-9aa53fac4b37",
+    "name": "Sistema-Projetos",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52953489",
+    "_collection_link": "https://go.postman.co/collection/52953489-89b85d96-9d29-486d-9323-9aa53fac4b37?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Criar Adm",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "whatever",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Carolina\",\n  \"cpf\": \"12345678900\",\n  \"papel\": \"ADMIN\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "437e37e2-8442-4143-8435-00b0742f3e0f",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Julia\",\n  \"cpf\": \"99999999999\",\n  \"papel\": \"USER\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/user",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Criar Projeto",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "437e37e2-8442-4143-8435-00b0742f3e0f",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nome\": \"Sistema Shopping\",\n  \"descricao\": \"Projeto do Iguatemi\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/projetos",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "projetos"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add Usuario a Projeto",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-USER-ID",
+            "value": "437e37e2-8442-4143-8435-00b0742f3e0f",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/projetos/c82179eb-52ee-443c-851c-dc92f2c4fb5e/usuarios/c0b60b8f-95c8-471b-81fe-ecf07ef09263",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "projetos",
+            "c82179eb-52ee-443c-851c-dc92f2c4fb5e",
+            "usuarios",
+            "c0b60b8f-95c8-471b-81fe-ecf07ef09263"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
